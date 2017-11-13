@@ -6,7 +6,8 @@
 ## cacheSolve function computes the inverse of the special matrix returned by the function makeCacheMatrix
 
 makeCacheMatrix <- function(x = matrix()) {
-             
+        ## This function returns a list of getter and setter methods for a matrix and its inverse
+
         inv = NULL
         set = function(y) {
                 x <<- y
@@ -21,12 +22,13 @@ makeCacheMatrix <- function(x = matrix()) {
 cacheSolve <- function(x, ...) {
        
         inv = x$getinv()
-        
+        ## if inverse of the matrix already exists get it from Cache 
         if (!is.null(inv)){
                 message("getting cached data")
                 return(inv)
         }
         
+        ## if the inverse does not exists calculate it and add it to Cache
         mat = x$get()
         inv = solve(mat, ...)
 
@@ -34,7 +36,7 @@ cacheSolve <- function(x, ...) {
         
         return(inv)
 }
-
+}
 
 
 
